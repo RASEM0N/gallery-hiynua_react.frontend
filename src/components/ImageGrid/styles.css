@@ -61,10 +61,25 @@ img {
     font-weight: bolder;
     background-color: inherit;
     padding: 5px;
-    border-color: black;
+    border-color: #e3e3e3;
     border-bottom: none;
     border-top: none;
     transform: translateY(-13px);
     color: white;
     cursor: pointer;
+}
+
+.downloads{
+    position: absolute;
+    min-width: 50px;
+    padding: 2px;
+    font-size: 14px;
+    text-align: center;
+    top: 0;
+    right: 0;
+    background-color: white;
+    border-bottom-left-radius: 13px;
+    border: 1px solid #e3e3e3;
+    border-bottom: none;
+    border-left: none;
 }

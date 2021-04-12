@@ -3,7 +3,7 @@ import './styles.css'
 import { connect } from 'react-redux'
 import { loadImages } from '../../actiion/imaged-action'
 
-const ImageGrid = ({ images, error, page, loading, loadImages }) => {
+const ImageGrid = ({ images, error, page, stats, loading, loadImages }) => {
     useEffect(() => {
         loadImages()
     }, [])
@@ -22,6 +22,11 @@ const ImageGrid = ({ images, error, page, loading, loadImages }) => {
                         )}`}
                     >
                         <img src={image.urls.small} alt={image.user.username} />
+                        <div className={'downloads'}>
+                            {stats[image.id]
+                                ? stats[image.id].downloads
+                                : '...'}
+                        </div>
                     </div>
                 ))}
             </section>
@@ -30,10 +35,11 @@ const ImageGrid = ({ images, error, page, loading, loadImages }) => {
 }
 
 const mapStateToProps = state => ({
-    images: state.images,
-    loading: state.loading,
-    error: state.error,
-    page: state.page,
+    images: state.images.images,
+    loading: state.images.loading,
+    error: state.images.error,
+    page: state.images.page,
+    stats: state.stats,
 })
 
 export default connect(mapStateToProps, {

@@ -1,15 +1,20 @@
-import { applyMiddleware, createStore } from 'redux'
+import { applyMiddleware, combineReducers, createStore } from 'redux'
 import { composeWithDevTools } from 'redux-devtools-extension'
 import createSagaMiddleware from 'redux-saga'
 
 import images from './reducers/images-reducer'
-import watchImagesLoad from './saga/image-saga'
+import stats from './reducers/stats-reducer'
+
+import rootSaga from './saga/index'
 
 const sagaMiddleware = createSagaMiddleware()
 const store = createStore(
-    images,
+    combineReducers({
+        images,
+        stats,
+    }),
     composeWithDevTools(applyMiddleware(sagaMiddleware))
 )
 // запускаем сагу
-sagaMiddleware.run(watchImagesLoad)
+sagaMiddleware.run(rootSaga)
 export default store

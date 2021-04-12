@@ -1,8 +1,8 @@
 import { key, imagesURL } from '../config/config'
 
-export const fetchImages = async page => {
+export const fetchImageStats = async id => {
     const response = await fetch(
-        `${imagesURL}/?client_id=${key}&per_page=3&page=${page}`
+        `${imagesURL}/${id}/statistics/?client_id=${key}`
     )
     const data = await response.json()
     if (response.status >= 400) throw new Error(data.errors)
