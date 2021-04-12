@@ -2,11 +2,13 @@ import React, { useEffect, useState } from 'react'
 import './styles.css'
 import { key } from '../../config/config'
 import { connect } from 'react-redux'
+import { loadImages } from '../../actiion/imaged-action'
 
-const ImageGrid = ({ imagesGlobal, error, loading }) => {
+const ImageGrid = ({ imagesGlobal, error, loading, loadImages }) => {
     const [images, setImages] = useState([])
 
     useEffect(() => {
+        loadImages(images)
         fetch(`https://api.unsplash.com/photos/?client_id=${key}&per_page=28`)
             .then(res => res.json())
             .then(images => {
@@ -16,6 +18,7 @@ const ImageGrid = ({ imagesGlobal, error, loading }) => {
 
     return (
         <div className="content">
+            <a onClick={loadImages}>Load images</a>
             <section className="grid">
                 {images.map(image => (
                     <div
@@ -38,4 +41,6 @@ const mapStateToProps = state => ({
     error: state.error,
 })
 
-export default connect(mapStateToProps, null)(ImageGrid)
+export default connect(mapStateToProps, {
+    loadImages,
+})(ImageGrid)
