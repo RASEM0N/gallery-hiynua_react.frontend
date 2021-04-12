@@ -53,3 +53,18 @@ img {
 .item {
     position: relative;
 }
+
+.more{
+    position: fixed;
+    z-index: 1;
+    font-size: 20px;
+    font-weight: bolder;
+    background-color: inherit;
+    padding: 5px;
+    border-color: black;
+    border-bottom: none;
+    border-top: none;
+    transform: translateY(-13px);
+    color: white;
+    cursor: pointer;
+}

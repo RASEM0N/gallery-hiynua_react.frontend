@@ -4,6 +4,7 @@ const initialState = {
     images: [],
     loading: false,
     error: null,
+    page: 1,
 }
 
 export default (state = initialState, action) => {
@@ -12,27 +13,25 @@ export default (state = initialState, action) => {
     switch (type) {
         case IMAGES.LOAD: {
             return {
-                ...initialState,
+                ...state,
                 loading: true,
             }
         }
-
         case IMAGES.LOAD_FAIL: {
             return {
-                ...initialState,
+                ...state,
                 loading: false,
                 error: payload,
             }
         }
-
         case IMAGES.LOAD_SUCCESS: {
             return {
-                ...initialState,
-                images: [...state.images, payload],
+                ...state,
+                images: [...state.images, ...payload],
                 loading: false,
+                page: state.page + 1,
             }
         }
-
         default: {
             return state
         }
